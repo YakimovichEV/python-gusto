@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'gusto.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-db=dj_database_url.config(default=env('DATABASE_URL'))
+db = dj_database_url.config(default=env('DATABASE_URL'))
 
 DATABASES = {
 'default': db
