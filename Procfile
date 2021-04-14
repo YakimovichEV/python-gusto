@@ -1,0 +1,1 @@
+web: gunicorn gusto.wsgi --preload --log-file -

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container align-items-center" style="padding: 20px">
+        <div class="col-md-12" style="margin: 0 auto">
+            <form name="addCategory" id = "addCategorys" novalidate action="" method="post">
+                {% csrf_token %}
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        {{ form1.title }}
+                    </div>
+                    <div class="col-md-6" style="margin: 0 auto">
+                        <p class="centre"> Is visible? {{ form1.is_visible}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" aria-placeholder="Порядок категорії">
+                        {{ form1.category_order }}
+                    </div>
+                    <div class="col-md-6">
+                        <p class="centre"> Is special? {{ form1.is_visible}}</p>
+                    </div>
+                </div>
+                <p class="centre" style="padding-top: 20px"> <button type="submit" id="1" class="btn btn-primary"> Добавить категорию </button></p>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

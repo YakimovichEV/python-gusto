@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    {# Банера #}
+    <section id = "banners" >
+        <div class="carusel">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for item in banners%}
+                        {% if forloop.first %}
+                            <div class="carousel-item active">
+                                <img src="{{ item.photo.url }}" class="d-block" alt="">
+                            </div>
+                        {% else %}
+                            <div class="carousel-item">
+                                <img src="{{ item.photo.url }}" class="d-block" alt="">
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon1" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon1" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    {# Специальное меню #}
+    <section id ="special_menu">
+        <h2>Спеціальні пропозиції!</h2>
+        <div class="carusel">
+            <div id="carouselExampleControls1" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for item in special_categories %}
+                        {% for dish in item.dishes %}
+                            {% if forloop.first %}
+                                <div class="carousel-item active">
+                                    <div class="row align-items-start">
+                                        <div class="col-4" id="columnsspecialmenu">
+                                            <div class="title">
+                                                <a style="text-decoration: none" href="/menu/{{ dish.pk }}">{{dish.title}}</a>
+                                            </div>
+                                            <div class="dishspecialphoto">
+                                                <p class="centre"> <img src="{{ dish.photo.url }}" width="512px" height="512px"> </p>
+                                            </div>
+                                            <div class="descriptionspecialdish">
+                                                <div>
+                                                    <span class="centre"> {{ dish.description }} </span>
+                                                </div>
+                                            </div>
+                                            <div class="pricespecialdish">
+                                                <p class="centre"> {{ dish.price }}&#8372;/{{ dish.weight }}г</p>
+                                            </div>
+                                            <div class="menubutton">
+                                                <p class="centre"> <button type="button" class="btn btn-primary buttonspecialdish"><b>Замовити</b></button></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="carousel-item">
+                                    <div class="row align-items-start">
+                                        <div class="col-4" id="columnsspecialmenu">
+                                            <div class="title">
+                                                <a style="text-decoration: none" href="/menu/{{ dish.pk }}">{{dish.title}}</a>
+                                            </div>
+                                            <div class="dishspecialphoto">
+                                                <p class="centre"> <img src="{{ dish.photo.url }}" width="512px" height="512px" > </p>
+                                            </div>
+                                            <div class="descriptionspecialdish">
+                                                <div>
+                                                    {{ dish.description }}
+                                                </div>
+                                            </div>
+                                            <div class="pricespecialdish">
+                                                <p class="centre"> {{ dish.price }}&#8372;/{{ dish.weight }}г</p>
+                                            </div>
+                                            <div class="menubutton">
+                                                <p class="centre"> <button type="button" class="btn btn-primary buttonspecialdish"><b>Замовити</b></button></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls1" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls1" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    {# Меню #}
+    <section id="menu">
+        <h1>Меню</h1>
+        <div class="menu">
+            <div class="row align-items-start">
+                {% for item in categories %}
+                    {% for dish in item.dishes %}
+
+                        <div class="col-4" id="columnsmenu" style="height: 100%">
+                            <div class="title">
+
+                                <a style="text-decoration: none" class = "mainmenu" href="/menu/{{ dish.pk }}">{{dish.title}}</a>
+                            </div>
+                            <div class="dishphoto">
+                                <p class="centre"> <img src="{{ dish.photo.url }}" class="img-fluid"  > </p>
+                            </div>
+                            <div class="descriptiondish">
+                                <div style=>
+                                    <span >{{ dish.description }}</span>
+                                </div>
+                            </div>
+                            <div class="pricedish">
+                                <p class="centre"> {{ dish.price }}&#8372;/{{ dish.weight }} г</p>
+                            </div>
+                            <div class="menubutton">
+                                <p class="centre"> <button type="button" class="btn btn-primary"><b>Замовити</b></button></p>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section section id="events">
+        <div class="section_name"><h1>Події</h1></div>
+        {% for item in events %}
+        <div class="card mb-3">
+            <img class="card-img-top" src="{{item.photo.url}}" alt="Image" />
+            <div class="card-body">
+                <h5 class="card-title">{{item.title}}</h5>
+                <p class="card-text">Опис: {{item.description}}</p>
+                <p class="card-text">Ціна: {{item.price}}</p>
+                <p class="card-text">
+                    Дата івенту: {{item.event_date |date:'d-m-y'}}
+                </p>
+                <p class="card-text">Дата івенту:{{item.event_time}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+    {# Резервация #}
+    <section id = "reservation" >
+        <h1>Резервація столів</h1>
+        <div class="container" class="align-items-center" style="border-radius: 20px; margin: 0 auto">
+            <div class="col-md-12">
+                <form name="sendMessage" id = "contactForm" novalidate action="" method="post" style="margin: 10px">
+                    {% csrf_token %}
+                    <div class="row" style="margin: 10px">
+                        <div class="col-md-6">
+                            {{ form.user_name }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.user_email }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" style="padding: 20px; margin: 0 auto">
+                            {{ form.message }}
+                        </div>
+                    </div>
+                    <p class="centre"> <button type="submit" class="btn btn-primary" style="width: 15%"> Відправити запит </button> </p>
+                </form>
+            </div>
+        </div>
+        <p class="centre"> <a style="text-decoration: none" class = "mainmenu" href="/menu/add/category"> Додати категорію </a> </p>
+    </section>
+    {# Test #}
+    {% comment %}<section id = "test">
+     <div class="container align-items-center" style="padding: 20px">
+        <div class="col-md-12" style="margin: 0 auto">
+            <form name="addCategory" id = "addCategorys" novalidate action="" method="post">
+                {% csrf_token %}
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        {{ form2.title }}
+                    </div>
+                    <div class="col-md-6" style="margin: 0 auto">
+                        <p class="centre"> Is visible? {{ form2.is_visible}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6" aria-placeholder="Порядок категорії">
+                        {{ form2.description }}
+                    </div>
+                    <div class="col-md-6">
+                        <p class="centre"> Is special? {{ form2.weight}}</p>
+                    </div>
+                    <div class="row">
+                    <div class="col-md-6" aria-placeholder="Порядок категорії">
+                        {{ form2.photo }}
+                    </div>
+                    <div class="col-md-6">
+                        <p class="centre"> Is special? {{ form2.price}}</p>
+                    </div>
+                </div>
+                <p class="centre" style="padding-top: 20px"> <button type="submit" id="1" class="btn btn-primary"> Добавить категорию </button></p>
+            </form>
+        </div>
+    </div>
+    </section>{% endcomment %}
+
+{% endblock %}

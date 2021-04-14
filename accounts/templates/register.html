@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+
+
+{% block content %}
+    <div class="container">
+        <div class="section-title text-center">
+            <h3>Реєстрація нового користувача</h3>
+        </div>
+        <div class="col-md-10 col-md-offset-1">
+            <div class="row">
+                <div class="col-md-6">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        {{form.as_p}}
+                        <input type="submit" value="Зареєструватися">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

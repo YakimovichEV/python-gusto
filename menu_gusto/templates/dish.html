@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row align-items-center">
+    <div class="col-md-8" style="margin: 0 auto">
+        <div class="title">
+            {{dish.title}}
+        </div>
+        <div class="dishphoto">
+            <p class="leftimg"> <img src="{{ dish.photo.url }}" class="img-fluid imgborder"></p>
+        </div>
+        <div class="descriptiondish" style="height: 100%">
+            <div>
+                <span >{{ dish.description }}</span>
+            </div>
+        </div>
+        <div class="pricedish">
+            <p class="centre"> {{ dish.price }}&#8372;/{{ dish.weight }} г</p>
+        </div>
+        <div class="menubutton">
+            <p class="centre"> <button type="button" class="btn btn-primary"><b>Замовити</b></button></p>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+
